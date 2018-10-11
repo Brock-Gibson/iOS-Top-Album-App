@@ -17,19 +17,15 @@ class AlbumDetailViewController: UIViewController {
     @IBOutlet weak var Explicit: UILabel!
     @IBOutlet weak var releaseDate: UILabel!
     
-    var getAlbumName: String?
-    var getArtistName: String?
-    var getAlbumArtwork: UIImage?
-    var getExplicit: String?
-    var getDate: String?
+    var VCAlbum: Album?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         DetailTitle.title = "Album Info"
-        DescLabel.text = getAlbumName! + "  " + getExplicit!
-        artistLabel.text = getArtistName
-        albumArtwork.image = getAlbumArtwork
-        releaseDate.text = "Release Date: " + getDate!
+        DescLabel.text = VCAlbum!.name + "  " + (VCAlbum!.explicit ? "🅴" : "")
+        artistLabel.text = VCAlbum?.artist
+        releaseDate.text = "Release Date: " + VCAlbum!.date
+        setAlbumImage(artwork: VCAlbum!.artwork, imageView: albumArtwork)
     }
 }

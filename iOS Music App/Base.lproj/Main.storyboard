@@ -51,13 +51,22 @@
                                                 <constraint firstAttribute="height" constant="44" id="Vtr-X4-Bnt"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pm9-mg-aYd">
+                                            <rect key="frame" x="271" y="14" width="55" height="30"/>
+                                            <state key="normal" title="Favorite"/>
+                                            <connections>
+                                                <action selector="onFavoriteButton:" destination="IQh-Wn-Moq" eventType="touchUpInside" id="msh-sr-SQX"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Di2-tj-izr" firstAttribute="top" secondItem="gVq-QE-AUu" secondAttribute="top" constant="7" id="Hr4-0t-mJr"/>
+                                        <constraint firstAttribute="trailing" secondItem="Pm9-mg-aYd" secondAttribute="trailing" constant="15" id="IcX-ul-P60"/>
                                         <constraint firstItem="Di2-tj-izr" firstAttribute="leading" secondItem="gVq-QE-AUu" secondAttribute="leading" constant="10" id="PxM-dT-bWW"/>
                                         <constraint firstItem="Rga-WU-OrF" firstAttribute="top" secondItem="gVq-QE-AUu" secondAttribute="top" constant="7" id="U8V-48-e6U"/>
                                         <constraint firstItem="ysv-j9-8aX" firstAttribute="leading" secondItem="Di2-tj-izr" secondAttribute="trailing" constant="15" id="WE2-75-GSH"/>
                                         <constraint firstItem="Rga-WU-OrF" firstAttribute="leading" secondItem="Di2-tj-izr" secondAttribute="trailing" constant="15" id="hoC-oP-hV8"/>
+                                        <constraint firstItem="Pm9-mg-aYd" firstAttribute="top" secondItem="gVq-QE-AUu" secondAttribute="top" constant="14" id="nyj-5l-l21"/>
                                         <constraint firstItem="ysv-j9-8aX" firstAttribute="top" secondItem="Rga-WU-OrF" secondAttribute="bottom" constant="3" id="ruP-KF-OhW"/>
                                         <constraint firstAttribute="trailing" secondItem="Rga-WU-OrF" secondAttribute="trailing" constant="15" id="wSI-Qf-IiP"/>
                                         <constraint firstAttribute="trailing" secondItem="ysv-j9-8aX" secondAttribute="trailing" constant="15" id="zvT-MU-1A7"/>
@@ -67,6 +76,7 @@
                                     <outlet property="AlbumImage" destination="Di2-tj-izr" id="UQx-nZ-qbs"/>
                                     <outlet property="AlbumName" destination="Rga-WU-OrF" id="Jkd-Dx-tM8"/>
                                     <outlet property="ArtistName" destination="ysv-j9-8aX" id="XMZ-hZ-fHj"/>
+                                    <outlet property="favoriteButton" destination="Pm9-mg-aYd" id="f3Y-PC-GoL"/>
                                     <segue destination="1LY-HC-0BD" kind="showDetail" identifier="AlbumDetail" id="7Ii-1S-mJs"/>
                                 </connections>
                             </tableViewCell>

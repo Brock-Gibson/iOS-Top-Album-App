@@ -15,6 +15,22 @@ extension AlbumViewController {
 
 class AlbumViewController: UITableViewController {
     
+    @IBAction func onFavoriteButton(_ sender: UIButton) {
+        let cell = sender.superview!.superview! as! AlbumCell
+        let indexPath = tableView.indexPath(for: cell)!
+        
+        var album = albums[indexPath.row]
+        
+        if (album.favorite == true) {
+            sender.setTitle("Unfavorite", for: .normal)
+            album.favorite = false
+        } else {
+            sender.setTitle("Favorite", for: .normal)
+            album.favorite = true
+        }
+        
+//        sender.setTitle("Unfavorite", for: .normal)
+    }
     @IBOutlet weak var AlbumImg: UIImageView!
     @IBOutlet weak var Talbe: UITableView!
     @IBOutlet weak var AlbumName: UILabel!
@@ -51,11 +67,12 @@ class AlbumViewController: UITableViewController {
                     
                     for item in items! {
                         albumData.append(Album(id: Int((item["id"] as? String)!)!,
-                                                name: self.checkValidSting(item: item["name"]),
+                                                 name: self.checkValidSting(item: item["name"]),
                                                  artist: self.checkValidSting(item: item["artistName"]),
-                                                 artwork: self.getImage(url: (item["artworkUrl100"] as? String)!),
+                                                 artwork: URL(string: (item["artworkUrl100"] as! String))!,
                                                  explicit: self.checkExplicit(rating: (item["contentAdvisoryRating"])),
-                                                 date: self.getReleaseDate(date: (item["releaseDate"] as? String)!)
+                                                 date: self.getReleaseDate(date: (item["releaseDate"] as? String)!),
+                                                 favorite: false
                         ))
                     }
                     
@@ -106,11 +123,6 @@ class AlbumViewController: UITableViewController {
         }
         return false
     }
-    
-    func getImage(url :String) -> UIImage {
-        let imageData = try! Data(contentsOf: URL(string: url)!)
-        return UIImage(data: imageData)!
-    }
         
     func getReleaseDate(date: String) -> String {
         let dateFormatter = DateFormatter()
@@ -130,8 +142,10 @@ class AlbumViewController: UITableViewController {
         
         cell.AlbumName.text = album.name
         cell.ArtistName.text = album.artist
-        cell.AlbumImage.image = album.artwork
-        return cell   
+        
+        setAlbumImage(artwork: album.artwork, imageView: cell.AlbumImage)
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
@@ -145,12 +159,7 @@ class AlbumViewController: UITableViewController {
             let path = tableView.indexPathForSelectedRow
             
             let row = path?.row
-            controller!.getArtistName = albums[row!].artist
-            controller!.getAlbumName = albums[row!].name
-            controller!.getAlbumArtwork = albums[row!].artwork
-            controller!.getExplicit = albums[row!].explicit ? "🅴" : ""
-            controller!.getDate = albums[row!].date
+            controller!.VCAlbum = albums[row!]
         }
     }
-
 }

@@ -12,6 +12,7 @@ class AlbumCell: UITableViewCell {
     @IBOutlet weak var AlbumImage: UIImageView!
     @IBOutlet weak var AlbumName: UILabel!
     @IBOutlet weak var ArtistName: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,5 +24,4 @@ class AlbumCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }
