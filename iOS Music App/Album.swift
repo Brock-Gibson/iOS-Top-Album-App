@@ -15,5 +15,4 @@ struct Album {
     var artwork: UIImage
     var explicit: Bool
     var date: String
-    var url: URL
 }

@@ -51,12 +51,11 @@ class AlbumViewController: UITableViewController {
                     
                     for item in items! {
                         albumData.append(Album(id: Int((item["id"] as? String)!)!,
-                                                 name: (item["name"] as? String)!,
-                                                 artist: (item["artistName"] as? String)!,
+                                                name: self.checkValidSting(item: item["name"]),
+                                                 artist: self.checkValidSting(item: item["artistName"]),
                                                  artwork: self.getImage(url: (item["artworkUrl100"] as? String)!),
                                                  explicit: self.checkExplicit(rating: (item["contentAdvisoryRating"])),
-                                                 date: self.getReleaseDate(date: (item["releaseDate"] as? String)!),
-                                                 url: URL(string: (item["url"] as? String)!)!
+                                                 date: self.getReleaseDate(date: (item["releaseDate"] as? String)!)
                         ))
                     }
                     
@@ -92,6 +91,13 @@ class AlbumViewController: UITableViewController {
         self.tableView.delegate = self
         
         fetchTopAlbums()
+    }
+    
+    func checkValidSting(item: Any?) -> String {
+        if item != nil {
+            return (item as? String)!
+        }
+        return ""
     }
     
     func checkExplicit(rating: Any?) -> Bool {
